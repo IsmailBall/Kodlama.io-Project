@@ -27,9 +27,9 @@ namespace Kodlama.io.Devs.Application.Features.Commands.CreateLanguage
 
             public async Task<LanguageCreateDto> Handle(CreateLanguageCommand request, CancellationToken cancellationToken)
             {
-                _languageBusinessRules.LanguageNameCanNotBeDuplicatedWhenInserted(request.Name);
+                await _languageBusinessRules.LanguageNameCanNotBeDuplicatedWhenInserted(request.Name);
 
-                var mappedLanguage = _mapper.Map<Language>(request.Name);
+                var mappedLanguage = _mapper.Map<Language>(request);
                 var createdLanguage = await _languageRepository.AddAsync(mappedLanguage);
                 var createdLanguageDto = _mapper.Map<LanguageCreateDto>(createdLanguage);
 

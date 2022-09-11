@@ -20,8 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Constants\" />
-    <Folder Include="Features\Models\" />
-    <Folder Include="Features\Quries\" />
+    <Folder Include="Features\Quries\GetByIdLanguageQuery\" />
   </ItemGroup>
 
   <ItemGroup>

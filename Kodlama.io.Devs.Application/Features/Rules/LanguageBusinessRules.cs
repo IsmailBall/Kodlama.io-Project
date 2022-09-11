@@ -1,6 +1,8 @@
 ﻿using Core.CrossCuttingConcerns.Exceptions;
+using Core.Persistence.Paging;
 using Kodlama.io.Devs.Application.Features.Dtos;
 using Kodlama.io.Devs.Application.Services.Repositoreis;
+using Kodlama.io.Devs.Domain.Entities;
 
 namespace Kodlama.io.Devs.Application.Features.Rules
 {
@@ -13,9 +15,9 @@ namespace Kodlama.io.Devs.Application.Features.Rules
             _languageRepository = languageRepository;
         }
 
-        public async void LanguageNameCanNotBeDuplicatedWhenInserted(string name)
+        public async Task LanguageNameCanNotBeDuplicatedWhenInserted(string name)
         {
-            var result = await _languageRepository.GetListAsync(l => l.Name == name);
+            IPaginate<Language> result = await _languageRepository.GetListAsync(l => l.Name == name);
             if (result.Items.Any()) throw new BusinessException("There exist same name with language intendet to insert"); 
         }
     }
